@@ -10,6 +10,7 @@
 #include <logging.h>
 #include <net.h>
 #include <net_types.h>
+#include <node/utxo_snapshot.h>
 #include <netaddress.h>
 #include <netbase.h>
 #include <support/allocators/secure.h>
@@ -204,6 +205,9 @@ public:
 
     //! List rpc commands.
     virtual std::vector<std::string> listRpcCommands() = 0;
+
+    //! Load and activate a snapshot file
+    virtual bool loadSnapshot(AutoFile& coins_file, const node::SnapshotMetadata& metadata, bool in_memory) = 0;
 
     //! Set RPC timer interface if unset.
     virtual void rpcSetTimerInterfaceIfUnset(RPCTimerInterface* iface) = 0;
